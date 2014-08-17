@@ -12,7 +12,7 @@ The data set to be analyzed was obtained through the forked Github  repository.
 
 The date of obtaining: Aug. 10, 2014
 
-** Setting up the environment for the data analysis**
+**Setting up the environment for the data analysis**
 
 This is the working directory for the assignment.
 
@@ -111,7 +111,7 @@ mean.steps <- mean(steps.per.day$x)
 median.steps <- median(steps.per.day$x)
 ```
 
-The mean is 'r mean.steps' and the median is 'r median.steps'.
+The mean is 1.0766 &times; 10<sup>4</sup> and the median is 10765.
 
 
 ## What is the average daily activity pattern?
@@ -137,7 +137,7 @@ max.day <- max(mean.steps.time$x)
 max.steps.itv <- mean.steps.time[which.max(mean.steps.time$x),c("Group.1")]
 ```
 
-The maximum nember of steps, 'r max.day', are taken during the interval of 'r max.steps.itv'.
+The maximum nember of steps, 206.1698, are taken during the interval of 835.
 
 
 ## Imputing missing values
@@ -153,7 +153,7 @@ Therefore, the number of the rows with NA values can be calculated as such:
 num.NA <- nrow(activity) - nrow(no.NA.activity)
 ```
 
-There are 'r num.NA' rows with NA values.
+There are 2304 rows with NA values.
 
 **Substituting values for NAs**
 
@@ -194,7 +194,7 @@ mean.steps2 <- mean(steps.per.day2$x)
 median.steps2 <- median(steps.per.day2$x)
 ```
 
-The mean is 'r mean.steps2' and the median is 'r median.steps2'.  The general pattern remain the same.  The mean and the median value are similar, the median being slightly lower than the mean.  The new histogram shows more prominant peak around the interval of 10000, but the trend is still there. The generated values did not change the nature of the dataset.
+The mean is 1.0731 &times; 10<sup>4</sup> and the median is 1.06 &times; 10<sup>4</sup>.  The general pattern remain the same.  The mean and the median value are similar, the median being slightly lower than the mean.  The new histogram shows more prominant peak around the interval of 10000, but the trend is still there. The generated values did not change the nature of the dataset.
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -212,6 +212,8 @@ for (i in 1:dim(activity2)[1]) {
 
 activity2$weekDay <- as.factor(activity2$weekDay)
 ```
+
+Now, calculate the average number of steps per interval, segmented into weekday and weekdays.
 
 
 ```r
