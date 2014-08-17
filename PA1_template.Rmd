@@ -70,11 +70,13 @@ Calculating the mean and median steps per day.
 
 ```{r}
 mean.steps <- mean(steps.per.day$x)
+mean.steps
 median.steps <- median(steps.per.day$x)
+median.steps
 
 ```
 
-The mean is `r mean.steps` and the median is `r median.steps`.
+**The mean is `r format(mean.steps, nsmall=2)` and the median is `r median.steps`.**
 
 
 ## What is the average daily activity pattern?
@@ -96,7 +98,7 @@ max.day <- max(mean.steps.time$x)
 max.steps.itv <- mean.steps.time[which.max(mean.steps.time$x),c("Group.1")]
 ```
 
-The maximum nember of steps, `r max.day`, are taken during the interval of `r max.steps.itv`.
+**The maximum nember of steps, `r max.day`, are taken during the interval of `r max.steps.itv`.**
 
 
 ## Imputing missing values
@@ -109,11 +111,12 @@ Therefore, the number of the rows with NA values can be calculated as such:
 
 ```{r}
 num.NA <- nrow(activity) - nrow(no.NA.activity)
+num.NA
 ```
 
-There are `r num.NA` rows with NA values.
+**There are `r num.NA` rows with NA values.**
 
-**Substituting values for NAs**
+### Substituting values for NAs
 
 It may not be a godd idea to simply ignore NA values.  There may be a need to substitute a plausible value for an NA.
 
@@ -137,10 +140,10 @@ Let's make a histogram of the total number of steps taken per day, with the new 
 steps.per.day2 <- aggregate(activity2$steps, by = list(activity2$date), FUN="sum")
 
 # Plotting a histogram
-histogram(~x, data=steps.per.day2, type="count", main="The Frequency of the Step per Day", xlab="# of steps")
+histogram(~x, data=steps.per.day2, type="count", main="The Frequency of the Step per Day (New Data)", xlab="# of steps")
 ```
 
-The mean and median steps per day, with the new datasat.
+Here are the mean and median steps per day, with the new datasat.
 
 ```{r}
 mean.steps2 <- mean(steps.per.day2$x)
@@ -148,7 +151,7 @@ median.steps2 <- median(steps.per.day2$x)
 
 ```
 
-The mean is `r mean.steps2` and the median is `r median.steps2`.  The general pattern remain the same.  The mean and the median value are similar, the median being slightly lower than the mean.  The new histogram shows more prominant peak around the interval of 10000, but the trend is still there. The generated values did not change the nature of the dataset.
+**The mean is `r format(mean.steps2, nsmall=2)` and the median is `r format(median.steps2, nsmall=2)`.**  The general pattern remains the same.  The mean and the median value are similar, the median being slightly lower than the mean.  The new histogram shows more prominant peak around the interval of 10000, but the trend is still there. The generated values did not change the nature of the dataset.
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -177,4 +180,4 @@ mean.steps.time2 <- aggregate(activity2$steps, by =list(activity2$interval, acti
 xyplot(x~Group.1 | Group.2, data=mean.steps.time2, t="l", layout = c(1,2), main="Daily Activity Pattern", xlab ="Interval", ylab="# steps")
 ```
 
-It seems that more steps taken during weekend than weekdays, although, people are starting the avtivities later in the course of the day on weekends, which seems to make sense. The overall trend resembles one another, having a peak in the earlier part of the day and somewhat activy throughout the later half.
+It seems that more steps taken during weekend than weekdays throughout the day.  People are starting the avtivities later in the course of a day and stay active until later in a day on weekends, which seems to make sense. The overall trend resembles one another, having a peak in the earlier part of the day and somewhat activy throughout the later half.
